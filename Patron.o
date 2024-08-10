@@ -2,6 +2,9 @@
 #define PATRON_O_
 
 #include <stdint.h>
+#include "Theater.o"
+#include "Movie.o"
+#include "Seating.o"
 
 void set_User(char *F_Name,char *M_Name,char *L_Name); //Set the user's name using POINTERS;
 
