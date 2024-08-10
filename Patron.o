@@ -1,1 +1,18 @@
+#ifndef PATRON_O_
+#define PATRON_O_
 
+#include <stdint.h>
+
+void set_User(char *F_Name,char *M_Name,char *L_Name); //Set the user's name using POINTERS;
+
+void user_Birth(int m,int d,int y,int yrs_Living); //Sets the user's birthday and their current age;
+
+void theater_Pref(double radius,string* Cinemas[],char* chosen); //Creating a function to set the user's preffered cinema(s).
+
+void movie_Pref(string* Genres[],string* chosen_Genres[],string* ideal_Movies[],uint8_t *prices_for_Movies,string desired); //Movie preferencs information for user.
+
+void showtime_Logistics(string* modes[],int* theater_Times[],int selected_time,char* menu[],char* food_requests[],char* people[],double total_cost); //Showtime logic
+
+void seating(char* seats[],char* people[],char* preffered_Seating[],string* status_Seating); //The information regarding seating for patrons;
+
+string Showing_information(char *people[],string desired,int selected_time,char* food_requests[],preffered_Seating[],double prices,string* status_Seating);
