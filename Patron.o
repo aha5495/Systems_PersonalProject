@@ -6,7 +6,7 @@
 #include "Movie.o"
 #include "Seating.o"
 
-void set_User(char *F_Name,char *M_Name,char *L_Name); //Set the user's name using POINTERS;
+void set_User(char *Customer); //Set the user's name using POINTERS;
 
 void user_Birth(int m,int d,int y,int yrs_Living); //Sets the user's birthday and their current age;
 
