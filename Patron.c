@@ -7,5 +7,8 @@
 
 void set_User(char *Customer){
   char *Patron=*Customer; //Using pointers to efficently create the username;
-  char* userName=Patron[50]; //Use a pointer variable,userName to hold the value of name(up to 50 chars accepted);Setting the user's name
+  char* userName=Patron[sizeof(Patron)/sizeof(Patron[1])]; //Use a pointer variable,userName to hold the value of name(up to 50 chars accepted);Setting the user's name
+}
+//Set the user's birthday;
+void set_Birthday(int m,int d,int yr,double age){
 }
