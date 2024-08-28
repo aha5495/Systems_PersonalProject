@@ -10,5 +10,10 @@ void set_User(char *Customer){
   char* userName=Patron[sizeof(Patron)/sizeof(Patron[1])]; //Use a pointer variable,userName to hold the value of name(up to 50 chars accepted);Setting the user's name
 }
 //Set the user's birthday;
-void set_Birthday(int m,int d,int yr,double age){
+void set_Birthday(struct date set,int m,int d,int yr,double age){
+  setdate(&set,&set.m,&set.d,&set.yr); //Setting the person's DOB with struct date;
+  this.age=age; //Using objects skills to set the age;
+}
+//Gives the best theater options suiting user's needs;
+void theater_Pref(double radius,string* Cinemas[],char* chosen){ 
 }
