@@ -15,5 +15,6 @@ void set_Birthday(struct date set,int m,int d,int yr,double age){
   this.age=age; //Using objects skills to set the age;
 }
 //Gives the best theater options suiting user's needs;
-void theater_Pref(double radius,string* Cinemas[],char* chosen){ 
+void theater_Pref(struct residence home,double radius,string* Cinemas[],char* chosen){ //Added a structure residence,taking the user's home address to find the most efficent theaters;
+  //Task 1:Within the list of Cinemas,find the most closest cinemas to radius distance;
 }
