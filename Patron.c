@@ -17,4 +17,9 @@ void set_Birthday(struct date set,int m,int d,int yr,double age){
 //Gives the best theater options suiting user's needs;
 void theater_Pref(struct residence home,double radius,string* Cinemas[],char* chosen){ //Added a structure residence,taking the user's home address to find the most efficent theaters;
   //Task 1:Within the list of Cinemas,find the most closest cinemas to radius distance;
+  find=true; //Boolean variable find,to keep on looping for the distance closest;
+  while(int i=0;i<=Theater.options(length)/options[1];i++){ //Looping around the list of available theaters to find the ones closest of all theaters;
+    
+  }
+
 }
