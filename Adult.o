@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+
+//Programmer:Aravind Alwar
+//Date:August 10,2024
+//File:Person.java
+public class Adult extends Person implements Browser{ //Adult class,responsible for implementing Browser in a specific way;
+    private ArrayList<Movie> allowedMovies; //For the adult,once they have logged into the system;
+    private float totalCost;
+    private String spec_Rating=" ";
+    //Constructors being formed for the adult Class
+    public Adult(String cus_fName,String cus_mName,String cus_lName,float cus_Age,String movie_Genre,float radius,Movie chosenMovie,Home residence,ArrayList<Movie> allowedMovies,float totalCost){
+        super(cus_fName, cus_mName, cus_lName, cus_Age, movie_Genre, radius, chosenMovie, residence);
+        this.allowedMovies = allowedMovies;
+        this.totalCost = totalCost;
+    }
+    public Adult(String cus_fName,String cus_mName,String cus_lName,float cus_Age,Home residence,ArrayList<Movie> allowedMovies){
+        super(cus_fName, cus_mName, cus_lName, cus_Age, residence);
+        this.allowedMovies = allowedMovies;
+    }
+    //Setters and getters:
+    public ArrayList<Movie> getAllowedMovies() {
+        return this.allowedMovies;
+    }
+    //We have to make the adult implement the search browser in the same way before they were logged in;
+    @Override
+    public boolean search(String film_Name){
+        //Assuming the movie title has not been found yet;
+        boolean moviePresent=false;
+        System.out.println("Searching the browser for:"+film_Name);
+        if(this.getAllowedMovies().isEmpty()){
+            moviePresent=false; //The film is not in the arrayList;
+        }
+        else{
+            //Check conditions for if the film_Name entered by the user IS IN the arrayList
+            for(Movie r:this.getAllowedMovies()){
+                if(r.getFilmTitle().equalsIgnoreCase(film_Name)){ //Checking if the query equals r.getFilmTitle()
+                    moviePresent=true;
+                }
+                else{ //If not found,the search doesn't contain keywords for the title;
+                    moviePresent=false;
+                }
+            }
+        }
+        return moviePresent;
+    }
+    @Override
+    public void display_search(String film_Name,String crit){
+        Movie m=null;
+        //The adult is trying to search for a movie with a specific condition;
+        if(!search(film_Name)){
+            System.out.println("Could not find the movie based on either name or criteria!");
+        }
+        else{ //We assume that we can find the movie somewhere in the list;
+            switch(crit){ //The user is required to type in a criteria to narrow the search
+                case "Cast":
+                    m=new Movie(super.getChosenMovie().getFilmTitle(),super.getChosenMovie().getDirector(),super.getChosenMovie().getActorsNames());
+                case "Rating": //For rating,an adult could give a PG,PG-13,R,or NC-17 option
+                    switch(spec_Rating) {
+                        case "G":
+                            System.out.println(film_Name+" happens to be a "+spec_Rating+"-rated movie.");
+                        case "PG":
+                            System.out.println(film_Name+" happens to be a "+spec_Rating+"-rated movie.Appropriate for most kids.");
+                        case "PG13":
+                            System.out.println(film_Name+" happens to be a "+spec_Rating+"-rated movie.You can watch it so long as you are mature to understand.");
+                        case "R":
+                            System.out.println(film_Name+" happens to be a "+spec_Rating+"-rated movie.Under 17 alone not permitted.");
+                        case "NC17":
+                            System.out.println(film_Name+" happens to be a "+spec_Rating+"-rated movie.ABSOLUTELY NO One under and including 17 allowed.");
+                        default:
+                            System.out.println("Needs to be a valid MPAA rating-G,PG,PG-13,R,or NC-17!");
+                    }
+                    m=new Movie(super.getChosenMovie().getFilmTitle(),super.getChosenMovie().getDirector(),super.getChosenMovie().getActorsNames(),super.getChosenMovie().getRating());
+                case "Time": //In what time period the movie was released;
+                    m=new Movie(super.getChosenMovie().getFilmTitle(),super.getChosenMovie().getFilmMonth(),super.getChosenMovie().getFilmDay(),super.getChosenMovie().getFilmYear(),super.getChosenMovie().getDirector());
+                default:
+                    System.out.println("Could not find the movie based on either name or criteria!");
+            }
+            System.out.println(m); //Print the information of the movie depending on the criteria and result
+        }
+    }
+    //String method to print Adult information as a ticket
+}
