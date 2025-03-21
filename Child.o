@@ -1,0 +1,6 @@
+import java.util.ArrayList;
+
+public class Child extends Person implements Browser{
+    private ArrayList<Movie> appropriateMovies;
+    private int child_Tix;
+}
