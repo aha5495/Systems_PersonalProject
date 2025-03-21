@@ -79,4 +79,8 @@ public class Adult extends Person implements Browser{ //Adult class,responsible 
         }
     }
     //String method to print Adult information as a ticket
+    public String tixInfo(){
+        System.out.print("Customer:\t"+super.getCus_fName()+" "+super.getCus_mName+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age()+"\nTickets for:\t"+this.display_search(film_Name,crit));
+        //We have to add the theater with the seating available soon;
+    }
 }
