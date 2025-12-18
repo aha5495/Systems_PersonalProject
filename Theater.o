@@ -1,3 +1,4 @@
+package com.example.local_theaters;
 import java.util.ArrayList;
 
 //Programmer:Aravind Alwar
@@ -75,4 +76,3 @@ public class Theater implements Browser{
         return "Theater:"+this.getTitle()+"\nAddress:"+this.getLocation().homeAddress();
     }
 }
-
