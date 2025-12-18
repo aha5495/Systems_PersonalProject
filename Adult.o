@@ -1,25 +1,38 @@
-import java.util.ArrayList;
+package com.example.local_theaters;
 
+import java.util.ArrayList;
 //Programmer:Aravind Alwar
 //Date:August 10,2024
 //File:Person.java
 public class Adult extends Person implements Browser{ //Adult class,responsible for implementing Browser in a specific way;
     private ArrayList<Movie> allowedMovies; //For the adult,once they have logged into the system;
     private float totalCost;
+    private boolean hasBeenadded;
     private String spec_Rating=" ";
     //Constructors being formed for the adult Class
-    public Adult(String cus_fName,String cus_mName,String cus_lName,float cus_Age,String movie_Genre,float radius,Movie chosenMovie,Home residence,ArrayList<Movie> allowedMovies,float totalCost){
+    public Adult(String cus_fName,String cus_mName,String cus_lName,int cus_Age,String movie_Genre,float radius,Movie chosenMovie,Home residence,ArrayList<Movie> allowedMovies,float totalCost){
         super(cus_fName, cus_mName, cus_lName, cus_Age, movie_Genre, radius, chosenMovie, residence);
         this.allowedMovies = allowedMovies;
         this.totalCost = totalCost;
     }
-    public Adult(String cus_fName,String cus_mName,String cus_lName,float cus_Age,Home residence,ArrayList<Movie> allowedMovies){
-        super(cus_fName, cus_mName, cus_lName, cus_Age, residence);
+    public Adult(String cus_fName,String cus_mName,String cus_lName,int cus_Age,Home residence,String userName,String password,ArrayList<Movie> allowedMovies){
+        super(cus_fName, cus_mName, cus_lName, cus_Age, residence,userName,password);
         this.allowedMovies = allowedMovies;
+    }
+    public Adult(String cus_fName,String cus_mName,String cus_lName,int cus_Age,Home residence,String userName,String password){
+        super(cus_fName,cus_mName,cus_lName,cus_Age,residence,userName,password);
+    }
+    //Username and Password setting constructor
+    public Adult(String userName,String password){
+        super(userName,password);
     }
     //Setters and getters:
     public ArrayList<Movie> getAllowedMovies() {
         return this.allowedMovies;
+    }
+    //September 27:We need to implement with our boolean hasBeenadded;
+    public boolean addedToBackend(boolean hasBeenadded){ //It will ensure that each ADULT has been added,essentially the state;
+        return this.hasBeenadded;
     }
     //We have to make the adult implement the search browser in the same way before they were logged in;
     @Override
@@ -79,8 +92,12 @@ public class Adult extends Person implements Browser{ //Adult class,responsible 
         }
     }
     //String method to print Adult information as a ticket
-    public String tixInfo(){
-        System.out.print("Customer:\t"+super.getCus_fName()+" "+super.getCus_mName+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age()+"\nTickets for:\t"+this.display_search(film_Name,crit));
+    public String basicInfo(){
+        return "Adult Customer:\t"+super.getCus_fName()+" "+super.getCus_mName()+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age();
+        //We have to add the theater with the seating available soon;
+    }
+    public String toString(){
+        return "Adult Customer:\t"+super.getCus_fName()+" "+super.getCus_mName()+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age()+"\nUsername:"+super.getResidence().getHouseNumber()+" "+super.getResidence().getHouseStreet()+","+super.getResidence().getLocal_area()+","+super.getResidence().getState()+","+super.getResidence().getZipcode()+"\nUsername:"+super.getUserName()+"\tPassword:"+super.getPassword();
         //We have to add the theater with the seating available soon;
     }
 }
