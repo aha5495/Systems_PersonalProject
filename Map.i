@@ -3,9 +3,9 @@
 //File:Map.i
 //Project:Local_Theaters.java
 
-import com.sothawo.mapjfx.Coordinate;
-import com.sothawo.mapjfx.MapView;
-import com.sothawo.mapjfx.MapType;
+import com.esri.arcgisruntime.mapping.ArcGISMap;
+import com.esri.arcgisruntime.mapping.BasemapStyle;
+import com.esri.arcgisruntime.mapping.view.MapView;
 public class Map{
     //We must declare a map variable that can reasonably hold in the Testing stages!!
     public MapView mapInterface;
