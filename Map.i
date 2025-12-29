@@ -5,10 +5,18 @@
 
 import java.util.ArrayList;
 import java.util.Vector;
+import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapView;
+import com.sothawo.mapjfx.MapType;
+import com.sothawo.mapjfx.Projection;
 public class Map{
     //We must declare a map variable that can reasonably hold in the Testing stages!!
     public MapView mapInterface;
+    protected String region; //We need a variable for this and the following 2 because they are responsible for tracking down WHAT region,map,and key we are using;
+    protected String mapName;
+    protected String api_Key;
+    //Given these 3 variables have access to the AWS map,they are able to track where exactly such parameter lies and without this,the map would fail in locating whereee people are;
+    private String mapURL;
     private Home startPoint;
     //Using a Vector of the type integer(because we are accounting for startPoint) to put the exact coordinates[x,y,z] of home.
     private Vector<Integer> home;
@@ -24,6 +32,10 @@ public class Map{
     public ArrayList<Integer> range_Distance;
 
     public void designMap(MapView mapInterface){ //Using an AWS map to display the app's map;
-
+        mapInterface=new MapView();
+        region="YOUR_REGION";
+        mapName="YOUR_MAP";
+        api_Key="YOUR_API_KEY";
+        mapURL="https://maps.geo." + region + "" + mapName + "/tiles/{z}/{x}/{y}?key=" + api_Key;
     }
 }
