@@ -17,6 +17,13 @@ public class Map{
     protected String api_Key;
     //Given these 3 variables have access to the AWS map,they are able to track where exactly such parameter lies and without this,the map would fail in locating whereee people are;
     private String mapURL;
+    //Update January 1:We need to add the variables that make up the startPoint,because a user's preference for starting point could vary;
+    protected int blockNum;
+    protected String street;
+    protected String local_County;
+    protected String state_Name;
+    protected int Zip;
+    protected String country;
     private Home startPoint;
     //Using a Vector of the type integer(because we are accounting for startPoint) to put the exact coordinates[x,y,z] of home.
     private Vector<Integer> home;
@@ -31,11 +38,15 @@ public class Map{
     public Integer miles_Away;
     public ArrayList<Integer> range_Distance;
 
-    public void designMap(MapView mapInterface){ //Using an AWS map to display the app's map;
+    public void designMap(MapView mapInterface,String region,String mapName,String api_Key,String mapURL){ //Using an AWS map to display the app's map;
         mapInterface=new MapView();
         region="YOUR_REGION";
         mapName="YOUR_MAP";
         api_Key="YOUR_API_KEY";
         mapURL="https://maps.geo." + region + "" + mapName + "/tiles/{z}/{x}/{y}?key=" + api_Key;
+        System.out.println("Default setting is in Standard Mode.");
+    }
+    public Vector getOrigin(Home startPoint,Vector<Integer> home){
+        
     }
 }
