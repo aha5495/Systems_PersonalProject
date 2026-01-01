@@ -107,8 +107,9 @@
             <TextField fx:id="user_resNumber" layoutX="35.0" layoutY="294.0" promptText="House Number" />
             <TextField fx:id="user_Street" layoutX="35.0" layoutY="355.0" promptText="Street" />
             <TextField fx:id="user_City" layoutX="35.0" layoutY="408.0" promptText="City" />
-            <TextField fx:id="user_Country" layoutX="35.0" layoutY="471.0" promptText="Country" />
+            <TextField fx:id="user_State" layoutX="35.0" layoutY="408.0" promptText="State" />
             <TextField fx:id="user_Zip" layoutX="35.0" layoutY="529.0" promptText="Zipcode" />
+            <TextField fx:id="user_Country" layoutX="35.0" layoutY="471.0" promptText="Country" />
             <Label fx:id="userName_notify" layoutX="49.0" layoutY="647.0" prefHeight="36.0" prefWidth="138.0">
                <font>
                   <Font size="15.0" />
