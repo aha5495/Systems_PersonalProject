@@ -97,7 +97,7 @@ public class Adult extends Person implements Browser{ //Adult class,responsible 
         //We have to add the theater with the seating available soon;
     }
     public String toString(){
-        return "Adult Customer:\t"+super.getCus_fName()+" "+super.getCus_mName()+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age()+"\nUsername:"+super.getResidence().getHouseNumber()+" "+super.getResidence().getHouseStreet()+","+super.getResidence().getLocal_area()+","+super.getResidence().getState()+","+super.getResidence().getZipcode()+"\nUsername:"+super.getUserName()+"\tPassword:"+super.getPassword();
+        return "Adult Customer:\t"+super.getCus_fName()+" "+super.getCus_mName()+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age()+"\nAddress:"+super.getResidence().getHouseNumber()+" "+super.getResidence().getHouseStreet()+","+super.getResidence().getLocal_area()+","+super.getResidence().getState()+","+super.getResidence().getZipcode()+","+super.getResidence().getCountry()+"\nUsername:"+super.getUserName()+"\tPassword:"+super.getPassword();
         //We have to add the theater with the seating available soon;
     }
 }
