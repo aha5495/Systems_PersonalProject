@@ -9,13 +9,15 @@ public class Home {
     private String Local_area;
     private String State;
     private int zipcode;
+    private String country;
     //Constructor used;
-    public Home(int houseNumber, String houseStreet, String Local_area, String State, int zipcode) {
+    public Home(int houseNumber, String houseStreet, String Local_area, String State, int zipcode,String country) {
         this.houseNumber = houseNumber;
         this.houseStreet = houseStreet;
         this.Local_area = Local_area;
         this.State = State;
         this.zipcode = zipcode;
+        this.country=country;
     }
     public void setHomeNum(int houseNumber) {
         this.houseNumber = houseNumber;
@@ -31,6 +33,9 @@ public class Home {
     }
     public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
+    }
+    public void setCountry(String country){
+        this.country=country;
     }
     //Getters
     public int getHouseNumber() {
@@ -48,8 +53,11 @@ public class Home {
     public int getZipcode() {
         return this.zipcode;
     }
+    public String getCountry(){
+        return this.country;
+    }
     //Display the home object information;
     public String homeAddress(){
-        return this.getHouseNumber()+","+this.getHouseStreet()+","+this.getLocal_area()+","+this.getState()+","+this.getZipcode();
+        return this.getHouseNumber()+" "+this.getHouseStreet()+","+this.getLocal_area()+","+this.getState()+","+this.getZipcode()+","+this.getCountry();
     }
 }
