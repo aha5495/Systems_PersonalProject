@@ -93,7 +93,7 @@ public class Child extends Person implements Browser{
         //We have to add the theater with the seating available soon;
     }
     public String fullChildInfo(){
-        return "Standard Customer:\t"+super.getCus_fName()+" "+super.getCus_mName()+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age()+"\nAddress:"+super.getResidence().getHouseNumber()+" "+super.getResidence().getHouseStreet()+","+super.getResidence().getLocal_area()+","+super.getResidence().getState()+","+super.getResidence().getZipcode()+"\nUsername:"+super.getUserName()+"\nPassword:"+super.getPassword();
+        return "Standard Customer:\t"+super.getCus_fName()+" "+super.getCus_mName()+" "+super.getCus_lName()+"\nAge:\t"+super.getCus_Age()+"\nAddress:"+super.getResidence().getHouseNumber()+" "+super.getResidence().getHouseStreet()+","+super.getResidence().getLocal_area()+","+super.getResidence().getState()+","+super.getResidence().getZipcode()+","+super.getResidence().getCountry()+"\nUsername:"+super.getUserName()+"\nPassword:"+super.getPassword();
         //We have to add the theater with the seating available soon;
     }
 }
