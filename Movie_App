@@ -69,9 +69,11 @@ public class LocalTheaters_App {
     @FXML
     private TextField user_City;
     @FXML
-    private TextField user_Country;
+    private TextField user_State;
     @FXML
     private TextField user_Zip;
+    @FXML
+    private TextField user_Country;
     @FXML
     private TextField critOne;
     @FXML
@@ -101,7 +103,7 @@ public class LocalTheaters_App {
     String firstN,middleN,lastN;
     int Age;
     int homeNum,zipcode;
-    String street,city,country;
+    String street,city,state,country;
     Home address;
     String cus_cred1,cus_cred2;
     String cus_credA,cus_credB;
@@ -127,8 +129,9 @@ public class LocalTheaters_App {
         user_resNumber.setVisible(false);
         user_Street.setVisible(false);
         user_City.setVisible(false);
-        user_Country.setVisible(false);
+        user_State.setVisible(false);
         user_Zip.setVisible(false);
+        user_Country.setVisible(false);
         userName.setVisible(false);
         cus_password.setVisible(false);
         btn_CreateAcc.setVisible(false);
@@ -168,8 +171,9 @@ public class LocalTheaters_App {
         user_resNumber.setVisible(true);
         user_Street.setVisible(true);
         user_City.setVisible(true);
-        user_Country.setVisible(true);
+        user_State.setVisible(true);
         user_Zip.setVisible(true);
+        user_Country.setVisible(true);
         userName.setVisible(true);
         cus_password.setVisible(true);
         critOne.setVisible(true);
@@ -181,8 +185,9 @@ public class LocalTheaters_App {
         homeNum=Integer.parseInt(user_resNumber.getText());
         street=user_Street.getText();
         city=user_City.getText();
-        country=user_Country.getText();
+        state=user_State.getText();
         zipcode=Integer.parseInt(user_Zip.getText());
+        country=user_Country.getText();
         cus_cred1=userName.getText();
         cus_cred2=cus_password.getText();
     }
@@ -294,11 +299,14 @@ public class LocalTheaters_App {
         if(!user_City.getText().isEmpty()){
             cus.getResidence().setLocal_area(user_City.getText());
         }
-        if(!user_Country.getText().isEmpty()){
-            cus.getResidence().setState(user_Country.getText());
+        if(!user_State.getText().isEmpty()){
+            cus.getResidence().setState(user_State.getText());
         }
         if(!user_Zip.getText().isEmpty()){
             cus.getResidence().setZipcode(Integer.parseInt(user_Zip.getText()));
+        }
+        if(!user_Country.getText().isEmpty()){
+            cus.getResidence().setCountry(user_Country.getText());
         }
         message.setText("Updated information!");
         message.setVisible(true);
@@ -312,8 +320,9 @@ public class LocalTheaters_App {
         user_resNumber.clear();
         user_Street.clear();
         user_City.clear();
-        user_Country.clear();
+        user_State.clear();
         user_Zip.clear();
+        user_Country.clear();
         userName.clear();
         cus_password.clear();
         //After user created their account,we are to take them back to the home screen
@@ -332,8 +341,9 @@ public class LocalTheaters_App {
         user_resNumber.setVisible(false);
         user_Street.setVisible(false);
         user_City.setVisible(false);
-        user_Country.setVisible(false);
+        user_State.setVisible(false);
         user_Zip.setVisible(false);
+        user_Country.setVisible(false);
         userName.setVisible(false);
         cus_password.setVisible(false);
         btn_CreateAcc.setVisible(false);
@@ -366,8 +376,9 @@ public class LocalTheaters_App {
         user_resNumber.setVisible(true);
         user_Street.setVisible(true);
         user_City.setVisible(true);
-        user_Country.setVisible(true);
+        user_State.setVisible(true);
         user_Zip.setVisible(true);
+        user_Country.setVisible(true);
         userName.setVisible(true);
         cus_password.setVisible(true);
         //Revision 9/17:We will use a search authenticator first for the user to find themselves;
@@ -385,8 +396,9 @@ public class LocalTheaters_App {
                 user_resNumber.setText(Integer.toString(cus.getResidence().getHouseNumber()));
                 user_Street.setText(cus.getResidence().getHouseStreet());
                 user_City.setText(cus.getResidence().getLocal_area());
-                user_Country.setText(cus.getResidence().getState());
+                user_State.setText(cus.getResidence().getState());
                 user_Zip.setText(Integer.toString(cus.getResidence().getZipcode()));
+                user_Country.setText(cus.getResidence().getCountry());
                 userName.setText(cus.getUserName());
                 cus_password.setText(cus.getPassword());
             }
@@ -423,18 +435,20 @@ public class LocalTheaters_App {
         }
         c1.setCus_lName(lastN);
         c1.setCus_Age(Age);
-        address=new Home(homeNum,street,city,country,zipcode);
+        address=new Home(homeNum,street,city,state,zipcode,country);
         address.setHomeNum(homeNum);
         address.setHouseStreet(street);
         address.setLocal_area(city);
-        address.setState(country);
+        address.setState(state);
         address.setZipcode(zipcode);
+        address.setCountry(country);
         c1.setResidence(address);
         c1.getResidence().setHomeNum(homeNum);
         c1.getResidence().setHouseStreet(street);
         c1.getResidence().setLocal_area(city);
-        c1.getResidence().setState(country);
+        c1.getResidence().setState(state);
         c1.getResidence().setZipcode(zipcode);
+        c1.getResidence().setCountry(country);
         c1.setUserName(cus_cred1);
         c1.setPassword(cus_cred2);
         //After we set everything,we should add c1 into the Patrons class;
@@ -466,8 +480,9 @@ public class LocalTheaters_App {
         user_resNumber.clear();
         user_Street.clear();
         user_City.clear();
-        user_Country.clear();
+        user_State.clear();
         user_Zip.clear();
+        user_Country.clear();
         userName.clear();
         cus_password.clear();
         //After user created their account,we are to take them back to the home screen
@@ -486,8 +501,9 @@ public class LocalTheaters_App {
         user_resNumber.setVisible(false);
         user_Street.setVisible(false);
         user_City.setVisible(false);
-        user_Country.setVisible(false);
+        user_State.setVisible(false);
         user_Zip.setVisible(false);
+        user_Country.setVisible(false);
         userName.setVisible(false);
         cus_password.setVisible(false);
         btn_CreateAcc.setVisible(false);
