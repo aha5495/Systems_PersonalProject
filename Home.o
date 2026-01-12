@@ -19,6 +19,9 @@ public class Home {
         this.zipcode = zipcode;
         this.country=country;
     }
+    public Home(String country){ //Constructor for ONLY our country setting; No Zipcode provided because zipcodes can change slightly via the country city;
+        this.country=country;
+    }
     public void setHomeNum(int houseNumber) {
         this.houseNumber = houseNumber;
     }
