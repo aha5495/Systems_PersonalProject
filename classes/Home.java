@@ -1,0 +1,66 @@
+package com.example.iota_theaters;
+//Programmer:Aravind Alwar
+//Date:August 10,2024
+//File:Home.java
+//Description: The class for the customer's home,will help to calculate the closest Theater(s);
+public class Home {
+    private int houseNumber;
+    private String houseStreet;
+    private String Local_area;
+    private String State;
+    private int zipcode;
+    private String country;
+    //Constructor used;
+    public Home(int houseNumber, String houseStreet, String Local_area, String State, int zipcode,String country) {
+        this.houseNumber = houseNumber;
+        this.houseStreet = houseStreet;
+        this.Local_area = Local_area;
+        this.State = State;
+        this.zipcode = zipcode;
+        this.country=country;
+    }
+    public Home(String country){ //Constructor for ONLY our country setting; No Zipcode provided because zipcodes can change slightly via the country city;
+        this.country=country;
+    }
+    public void setHomeNum(int houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+    public void setHouseStreet(String houseStreet) {
+        this.houseStreet = houseStreet;
+    }
+    public void setLocal_area(String Local_area) {
+        this.Local_area = Local_area;
+    }
+    public void setState(String State) {
+        this.State = State;
+    }
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
+    }
+    public void setCountry(String country){
+        this.country=country;
+    }
+    //Getters
+    public int getHouseNumber() {
+        return this.houseNumber;
+    }
+    public String getHouseStreet() {
+        return this.houseStreet;
+    }
+    public String getLocal_area() {
+        return this.Local_area;
+    }
+    public String getState() {
+        return this.State;
+    }
+    public int getZipcode() {
+        return this.zipcode;
+    }
+    public String getCountry(){
+        return this.country;
+    }
+    //Display the home object information;
+    public String homeAddress(){
+        return this.getHouseNumber()+" "+this.getHouseStreet()+","+this.getLocal_area()+","+this.getState()+","+this.getZipcode()+","+this.getCountry();
+    }
+}

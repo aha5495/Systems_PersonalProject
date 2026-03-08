@@ -1,0 +1,55 @@
+package com.example.iota_theaters;
+import java.util.ArrayList;
+
+//Programmer:Aravind Alwar
+//Date:September 26,2025
+//File:patronList.java
+public class patronList {
+    //Creating 2 types of arrayLists,for both adults and kids;
+    private ArrayList<Adult> adultsDatabase;
+    private ArrayList<Child> childrenDatabase;
+    public patronList(ArrayList<Adult> adultsDatabase,ArrayList<Child> childrenDatabase) {
+        this.adultsDatabase=adultsDatabase;
+        this.childrenDatabase=childrenDatabase;
+    }
+    //Setters and Getters
+    public void setChildrenDatabase(ArrayList<Child> childrenDatabase) {
+        this.childrenDatabase = childrenDatabase;
+    }
+    public void setAdultsDatabase(ArrayList<Adult> adultsDatabase) {
+        this.adultsDatabase = adultsDatabase;
+    }
+    public ArrayList<Child> getChildrenDatabase() {
+        return this.childrenDatabase;
+    }
+    public ArrayList<Adult> getAdultsDatabase() {
+        return this.adultsDatabase;
+    }
+    //Adding and removing customers from the database;
+    public void addChild(Child child) {
+        this.getChildrenDatabase().add(child);
+    }
+    public void addAdult(Adult grownUP){
+        this.getAdultsDatabase().add(grownUP);
+    }
+    public void removeChild(Child child) {
+        this.getChildrenDatabase().remove(child);
+    }
+    public void removeAdult(Adult grownUP){
+        this.getAdultsDatabase().remove(grownUP);
+    }
+    //Methods to print out the information
+    public String printKids(){
+        return String.valueOf(this.getChildrenDatabase());
+    }
+    public String List_Ofchildren(){
+        //Printing out all the customers in child sections;
+        return "Current Children in the database:\n"+printKids();
+    }
+    public String printAdults(){
+        return String.valueOf(this.getAdultsDatabase());
+    }
+    public String List_OfAdults(){
+        return "Current Adults in the database:\n"+printAdults();
+    }
+}

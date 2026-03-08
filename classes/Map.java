@@ -1,0 +1,58 @@
+package com.example.iota_theaters;
+//Name:Aravind Alwar
+//Date:December 26,2025
+//File:Map.i
+//Project:Local_Theaters.java
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
+import java.awt.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Vector;
+public class Map{
+    //This should be WebView rather than MapView,since AWS Maps use a MapLibre GL JS library. The latter takes in raw data to style via WebGL,making it easier and efficient in performance.
+    public WebView mapInterface;
+    public WebEngine source;
+    public String mapURL;
+    protected String region; //We need a variable for this and the following 2 because they are responsible for tracking down WHAT region,map,and key we are using;
+    protected String mapName;
+    protected String api_Key;
+    //Update January 1:We need to add the variables that make up the startPoint,because a user's preference for starting point could vary;
+    protected int blockNum;
+    protected String street;
+    protected String local_County;
+    protected String state_Name;
+    protected int Zip;
+    protected String country;
+    private String countryFile="https://history.state.gov/countries/all"; //We use a URL for the purpose of efficient code,rather than writing all out.
+    private URL countryList;
+    {
+        try {
+            countryList = new URL(countryFile);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private Home startPoint;
+    //Going to require another Home variable so that we can find the deep,interalized location of the house;
+    private Home locationPoint;
+    //Using a Vector of the type integer(because we are accounting for startPoint) to put the exact coordinates[x,y,z] of home.
+    boolean in_Country,city_Fd,mapBrowse;
+    double x_mag,y_mag,city_xMag,city_yMag,stateXMag,stateYMag;
+    private Vector<Integer> home;
+    //We are now accounting towards the multiple theaters that are the best ones for the user to commute to,in terms of time,miles,traffic,road closures,etc.
+    private Home optimal_Theater;
+    private ArrayList<Home> best_Theaters;
+    //While we used a single Vector of Integer type for our home...it is required to SIMPLIFY the process for more than 1 endpoint!! How?
+    private Vector<Integer> pt_Theater;
+    private ArrayList<Vector> idealSpots; //Since the vector is already an integer,we should use an ArrayList to store each Vector in the making of idealSpots;
+    public Time travelTime; //We are going to create a Time class to account for the amt of time it takes to drive to a theater in isolation,and...
+    public ArrayList<Time> range; //ArrayList Required since the same logic of idealSpots;
+    public Integer miles_Away;
+    public ArrayList<Integer> range_Distance;
+    //Add at least 1 point,which details the user's starting location;
+    private Point houseMark;
+}
