@@ -1,0 +1,514 @@
+package com.example.local_theaters;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class LocalTheaters_App {
+    @FXML
+    private Label userName_notify;
+    //Declare all our Basic buttons and Actions
+    @FXML
+    private Button btn_Account;
+    @FXML
+    private Button btn_BookTicket;
+    @FXML
+    private Button btn_ConfirmTicket;
+    @FXML
+    private Button btn_Credits;
+    @FXML
+    private Button btn_EditTicket;
+    @FXML
+    private Button btn_FoodMenu;
+    @FXML
+    private Button btn_LocalTheaters;
+    @FXML
+    private Button btn_AddNew;
+    @FXML
+    private Button btnEdit;
+    @FXML
+    private Button btnedit;
+    @FXML
+    private Button login;
+    @FXML
+    private Label message;
+    @FXML
+    private Label Company;
+    @FXML
+    private ImageView poster1;
+    @FXML
+    private ImageView poster2Films;
+    @FXML
+    private ImageView poster3Films;
+    @FXML
+    private Button btn_CreateAcc;
+    //Fields for Sign Up/Login
+    @FXML
+    private TextField user_FName;
+    @FXML
+    private TextField user_MName;
+    @FXML
+    private TextField user_LName;
+    @FXML
+    private TextField user_Age;
+    @FXML
+    private TextField user_resNumber;
+    @FXML
+    private TextField user_Street;
+    @FXML
+    private TextField user_City;
+    @FXML
+    private TextField user_State;
+    @FXML
+    private TextField user_Zip;
+    @FXML
+    private TextField user_Country;
+    @FXML
+    private TextField critOne;
+    @FXML
+    private TextField critTwo;
+    //Need an observable List and a ListView!!
+    @FXML
+    private ListView<Person> Customers_View=new ListView<>();
+    @FXML
+    private ObservableList<Person> allPatrons= FXCollections.observableArrayList();
+    //September 29:We are now going to be importing our List class as an object;
+    private ArrayList<Child> children=new ArrayList<>();
+    private ArrayList<Adult> adults=new ArrayList<>();
+    //Create listViews and Observables for each of the subclasses;
+    private ListView<Child> allKids=new ListView<>();
+    private ListView<Adult> over18=new ListView<>();
+    private ObservableList<Child> youngsters=FXCollections.observableArrayList();
+    private ObservableList<Adult> olderOnes=FXCollections.observableArrayList();
+    private patronList totalPatrons;
+    //Text Areas for both types of people;
+    @FXML
+    private TextArea child_GroupView;
+    @FXML
+    private TextArea adult_GroupView;
+    //Object
+    private Person c1;
+    //Declaring the variables in this section
+    String firstN,middleN,lastN;
+    int Age;
+    int homeNum,zipcode;
+    String street,city,state,country;
+    Home address;
+    String cus_cred1,cus_cred2;
+    String cus_credA,cus_credB;
+    //Username and Password variables
+    @FXML
+    private TextField userName;
+    @FXML
+    private TextField cus_password;
+    @FXML
+    void initialize() {
+        btn_Account.setVisible(true);
+        btn_BookTicket.setVisible(true);
+        btn_ConfirmTicket.setVisible(true);
+        btn_Credits.setVisible(true);
+        btn_EditTicket.setVisible(true);
+        btn_FoodMenu.setVisible(true);
+        btn_LocalTheaters.setVisible(true);
+        //Creating our Images for the start scene;
+        user_FName.setVisible(false);
+        user_MName.setVisible(false);
+        user_LName.setVisible(false);
+        user_Age.setVisible(false);
+        user_resNumber.setVisible(false);
+        user_Street.setVisible(false);
+        user_City.setVisible(false);
+        user_State.setVisible(false);
+        user_Zip.setVisible(false);
+        user_Country.setVisible(false);
+        userName.setVisible(false);
+        cus_password.setVisible(false);
+        btn_CreateAcc.setVisible(false);
+        userName_notify.setVisible(false);
+        btn_AddNew.setVisible(false);
+        btnEdit.setVisible(false);
+        btnedit.setVisible(false);
+        critOne.setVisible(false);
+        critTwo.setVisible(false);
+        Customers_View.setVisible(false);
+        login.setVisible(false);
+        allKids.setVisible(false);
+        over18.setVisible(false);
+        totalPatrons=new patronList(adults,children);
+        child_GroupView.setText(totalPatrons.List_Ofchildren());
+        adult_GroupView.setText(totalPatrons.List_OfAdults());
+    }
+    @FXML
+    void view_Account() { //We are going to either Create an Account,or Log in.
+        login.setVisible(false);
+        btn_BookTicket.setVisible(false);
+        btn_ConfirmTicket.setVisible(false);
+        btn_EditTicket.setVisible(false);
+        btn_FoodMenu.setVisible(false);
+        btn_LocalTheaters.setVisible(false);
+        message.setVisible(false);
+        //Creating new Buttons for the user
+        btn_CreateAcc.setVisible(true);
+        btn_AddNew.setVisible(true);
+        btnEdit.setVisible(true);
+        btn_CreateAcc.setLayoutX(49);
+        btn_CreateAcc.setLayoutY(660);
+        user_FName.setVisible(true);
+        user_MName.setVisible(true);
+        user_LName.setVisible(true);
+        user_Age.setVisible(true);
+        user_resNumber.setVisible(true);
+        user_Street.setVisible(true);
+        user_City.setVisible(true);
+        user_State.setVisible(true);
+        user_Zip.setVisible(true);
+        user_Country.setVisible(true);
+        userName.setVisible(true);
+        cus_password.setVisible(true);
+        critOne.setVisible(true);
+        critTwo.setVisible(true);
+        firstN=user_FName.getText();
+        middleN=user_MName.getText();
+        lastN=user_LName.getText();
+        Age=Integer.parseInt(user_Age.getText());
+        homeNum=Integer.parseInt(user_resNumber.getText());
+        street=user_Street.getText();
+        city=user_City.getText();
+        state=user_State.getText();
+        zipcode=Integer.parseInt(user_Zip.getText());
+        country=user_Country.getText();
+        cus_cred1=userName.getText();
+        cus_cred2=cus_password.getText();
+    }
+    @FXML
+    void view_ConcessionStand() {
+
+    }
+    @FXML
+    void view_Credits() {
+
+    }
+    @FXML
+    void view_LocalTheaters() { //Going to search for local theaters around
+        btn_BookTicket.setVisible(false);
+        btn_ConfirmTicket.setVisible(false);
+        btn_EditTicket.setVisible(false);
+        btn_FoodMenu.setVisible(false);
+        btn_LocalTheaters.setVisible(false);
+        message.setText("Login");
+        message.setVisible(true);
+        message.setLayoutX(35);
+        message.setLayoutY(20);
+        critOne.setVisible(true);
+        critOne.setLayoutX(35);
+        critOne.setLayoutY(155);
+        critTwo.setVisible(true);
+        critTwo.setLayoutX(35);
+        critTwo.setLayoutY(220);
+        cus_credA=critOne.getText();
+        cus_credB=critTwo.getText();
+        login.setText("Sign in");
+        login.setVisible(true);
+        login.setLayoutX(80);
+        login.setLayoutY(350);
+    }
+    @FXML
+    void access(){
+        view_LocalTheaters();
+        //Task will be to check if the userName and the Password are recognized in the ListViews.
+        allKids.setLayoutY(30);
+        allKids.setVisible(true);
+        over18.setLayoutY(200);
+        over18.setVisible(true);
+        for(Person p:totalPatrons.getAdultsDatabase()){
+            if(p instanceof Adult && p.getUserName().equalsIgnoreCase(cus_credA) && p.getPassword().equalsIgnoreCase(cus_credB)){ //Just like we login,both userName and password need to be exactly the same.
+                System.out.println("We recognize the adult signing in,"+p.getCus_fName()+" "+p.getCus_mName()+" "+p.getCus_lName());
+                critOne.clear();
+                critTwo.clear();
+                critOne.setVisible(false);
+                critTwo.setVisible(false);
+                break; //Let's add a break statement to test if the program works
+            }
+            else{ //If the username and Password do not match with their sign-up credentials
+                System.out.println("Checking for adult with username "+cus_credA+"...");
+                critOne.clear();
+                critTwo.clear();
+            }
+        }
+        //Task 11/11:We need to make the same things yield true for the Children Section
+        for(Person p:totalPatrons.getChildrenDatabase()){
+            if(p.getUserName().equalsIgnoreCase(cus_credA) && p.getPassword().equalsIgnoreCase(cus_credB)){ //Just like we login,both userName and password need to be exactly the same.
+                System.out.println("We recognize the child signing in,"+p.getCus_fName()+" "+p.getCus_mName()+" "+p.getCus_lName());
+                critOne.clear();
+                critTwo.clear();
+                critOne.setVisible(false);
+                critTwo.setVisible(false);
+                break; //Let's add a break statement to test if the program works
+            }
+            else{ //If the username and Password do not match with their sign-up credentials
+                System.out.println("Checking for child with username "+cus_credA+"...");
+                critOne.clear();
+                critTwo.clear();
+            }
+        }
+        //Set up the Places of the movie Theaters around the relative world;
+    }
+    @FXML
+    void book_Ticket() {
+
+    }
+    @FXML
+    void modify_TixStat() {
+
+    }
+    @FXML
+    void Confirm_Ticket() {
+
+    }
+    @FXML
+    void conf_Edit(){
+        Person cus=Customers_View.getSelectionModel().getSelectedItem();
+        Customers_View.setVisible(false);
+        //In case the user changes their information;
+        if(!user_FName.getText().isEmpty()){
+            cus.setCus_firstName(user_FName.getText());
+        }
+        if(!user_MName.getText().isEmpty()){
+            cus.setCus_mName(user_MName.getText());
+        }
+        if(!user_LName.getText().isEmpty()){
+            cus.setCus_lName(user_LName.getText());
+        }
+        if(!user_resNumber.getText().isEmpty()){
+            cus.getResidence().setHomeNum(Integer.parseInt(user_resNumber.getText()));
+        }
+        if(!user_Street.getText().isEmpty()){
+            cus.getResidence().setHouseStreet(user_Street.getText());
+        }
+        if(!user_City.getText().isEmpty()){
+            cus.getResidence().setLocal_area(user_City.getText());
+        }
+        if(!user_State.getText().isEmpty()){
+            cus.getResidence().setState(user_State.getText());
+        }
+        if(!user_Zip.getText().isEmpty()){
+            cus.getResidence().setZipcode(Integer.parseInt(user_Zip.getText()));
+        }
+        if(!user_Country.getText().isEmpty()){
+            cus.getResidence().setCountry(user_Country.getText());
+        }
+        message.setText("Updated information!");
+        message.setVisible(true);
+        System.out.println("3...2...1...");
+        message.setVisible(false);
+        //And then we will clear all since we have already updated the customer credentials;
+        user_FName.clear();
+        user_MName.clear();
+        user_LName.clear();
+        user_Age.clear();
+        user_resNumber.clear();
+        user_Street.clear();
+        user_City.clear();
+        user_State.clear();
+        user_Zip.clear();
+        user_Country.clear();
+        userName.clear();
+        cus_password.clear();
+        //After user created their account,we are to take them back to the home screen
+        btn_Account.setVisible(true);
+        btn_BookTicket.setVisible(true);
+        btn_ConfirmTicket.setVisible(true);
+        btn_Credits.setVisible(true);
+        btn_EditTicket.setVisible(true);
+        btn_FoodMenu.setVisible(true);
+        btn_LocalTheaters.setVisible(true);
+        //Creating our Images for the start scene;
+        user_FName.setVisible(false);
+        user_MName.setVisible(false);
+        user_LName.setVisible(false);
+        user_Age.setVisible(false);
+        user_resNumber.setVisible(false);
+        user_Street.setVisible(false);
+        user_City.setVisible(false);
+        user_State.setVisible(false);
+        user_Zip.setVisible(false);
+        user_Country.setVisible(false);
+        userName.setVisible(false);
+        cus_password.setVisible(false);
+        btn_CreateAcc.setVisible(false);
+        userName_notify.setVisible(false);
+        btn_AddNew.setVisible(false);
+        btnEdit.setVisible(false);
+        critOne.setVisible(false);
+        critTwo.setVisible(false);
+        btnedit.setVisible(false);
+    }
+    @FXML
+    void edit_Acc(){
+        btn_BookTicket.setVisible(false);
+        btn_ConfirmTicket.setVisible(false);
+        btn_EditTicket.setVisible(false);
+        btn_FoodMenu.setVisible(false);
+        btn_LocalTheaters.setVisible(false);
+        message.setVisible(false);
+        btn_CreateAcc.setVisible(false);
+        //Creating new Buttons for the user
+        btn_AddNew.setVisible(true);
+        btnEdit.setVisible(true);
+        btnedit.setVisible(true);
+        btnedit.setLayoutX(49);
+        btnedit.setLayoutY(660);
+        user_FName.setVisible(true);
+        user_MName.setVisible(true);
+        user_LName.setVisible(true);
+        user_Age.setVisible(true);
+        user_resNumber.setVisible(true);
+        user_Street.setVisible(true);
+        user_City.setVisible(true);
+        user_State.setVisible(true);
+        user_Zip.setVisible(true);
+        user_Country.setVisible(true);
+        userName.setVisible(true);
+        cus_password.setVisible(true);
+        //Revision 9/17:We will use a search authenticator first for the user to find themselves;
+        cus_credA=critOne.getText();
+        cus_credB=critTwo.getText();
+        critOne.clear();
+        critTwo.clear();
+        //Now we will search for the exact customer in the ListView provided the information;
+        for(Person cus:allPatrons){
+            if (cus.getUserName().equals(cus_credA) && cus.getPassword().equals(cus_credB)) {
+                user_FName.setText(cus.getCus_fName());
+                user_MName.setText(cus.getCus_mName());
+                user_LName.setText(cus.getCus_lName());
+                user_Age.setText(Integer.toString(cus.getCus_Age()));
+                user_resNumber.setText(Integer.toString(cus.getResidence().getHouseNumber()));
+                user_Street.setText(cus.getResidence().getHouseStreet());
+                user_City.setText(cus.getResidence().getLocal_area());
+                user_State.setText(cus.getResidence().getState());
+                user_Zip.setText(Integer.toString(cus.getResidence().getZipcode()));
+                user_Country.setText(cus.getResidence().getCountry());
+                userName.setText(cus.getUserName());
+                cus_password.setText(cus.getPassword());
+            }
+        }
+        Customers_View.setVisible(true);
+    }
+    @FXML
+    void add_Acc(){
+        create_Acc(); //We are replicating the same process for the user's convenience.
+        System.out.println("Another account for the user has been created");
+    }
+    //Inner buttons for our Main tasks
+    @FXML
+    void create_Acc(){
+        view_Account();
+        //Store the customer's address here,set all the variables;
+    //Task here is to create an account for our Client(s)--Polymorphism needed to group the person appropriately(as a child,adult)
+        if(Float.parseFloat(user_Age.getText())<18){
+            c1=new Child(firstN,middleN,lastN,Age,address,cus_cred1,cus_cred2);
+        }
+        else if(Float.parseFloat(user_Age.getText())>=18){
+            c1=new Adult(firstN,middleN,lastN,Age,address,cus_cred1,cus_cred2);
+        }
+        else if(Float.parseFloat(user_Age.getText())<0){
+            System.out.println("Invalid Age!Please try again or exit this screen");
+        }
+        //Setting every variable in the customer class
+        c1.setCus_firstName(firstN);
+        if(middleN.isEmpty()){
+            c1.setCus_mName("");
+        }
+        else{
+            c1.setCus_mName(middleN);
+        }
+        c1.setCus_lName(lastN);
+        c1.setCus_Age(Age);
+        address=new Home(homeNum,street,city,state,zipcode,country);
+        address.setHomeNum(homeNum);
+        address.setHouseStreet(street);
+        address.setLocal_area(city);
+        address.setState(state);
+        address.setZipcode(zipcode);
+        address.setCountry(country);
+        c1.setResidence(address);
+        c1.getResidence().setHomeNum(homeNum);
+        c1.getResidence().setHouseStreet(street);
+        c1.getResidence().setLocal_area(city);
+        c1.getResidence().setState(state);
+        c1.getResidence().setZipcode(zipcode);
+        c1.getResidence().setCountry(country);
+        c1.setUserName(cus_cred1);
+        c1.setPassword(cus_cred2);
+        //After we set everything,we should add c1 into the Patrons class;
+        allPatrons.add(c1);
+        Customers_View.setItems(allPatrons);
+        //November 3:We are now going to work with our newly created ListViews,ObservableViews,and Array Lists;
+        //totalPatrons,in both cases--is the Backend interface of the app where our Children and/or Adults coincide for Owner access;
+        if(c1 instanceof Child){
+            totalPatrons.addChild((Child)c1);
+            totalPatrons.setChildrenDatabase(children);
+            youngsters.add((Child)c1);
+            allKids.setItems(youngsters);
+            child_GroupView.setText(totalPatrons.List_Ofchildren());
+            System.out.println("We have updated the allKids list successfully with the new one added.");
+        }
+        else if(c1 instanceof Adult){
+            totalPatrons.addAdult((Adult)c1);
+            totalPatrons.setAdultsDatabase(adults);
+            olderOnes.add((Adult)c1);
+            over18.setItems(olderOnes); //Need to append our updates OlderOnes ObservableList into the over18;
+            adult_GroupView.setText(totalPatrons.List_OfAdults());
+            System.out.println("We have updated the over18 list successfully with the new one added.");
+        }
+        System.out.println("Customer has been stored into the database!");
+        user_FName.clear();
+        user_MName.clear();
+        user_LName.clear();
+        user_Age.clear();
+        user_resNumber.clear();
+        user_Street.clear();
+        user_City.clear();
+        user_State.clear();
+        user_Zip.clear();
+        user_Country.clear();
+        userName.clear();
+        cus_password.clear();
+        //After user created their account,we are to take them back to the home screen
+        btn_Account.setVisible(true);
+        btn_BookTicket.setVisible(true);
+        btn_ConfirmTicket.setVisible(true);
+        btn_Credits.setVisible(true);
+        btn_EditTicket.setVisible(true);
+        btn_FoodMenu.setVisible(true);
+        btn_LocalTheaters.setVisible(true);
+        //Creating our Images for the start scene;
+        user_FName.setVisible(false);
+        user_MName.setVisible(false);
+        user_LName.setVisible(false);
+        user_Age.setVisible(false);
+        user_resNumber.setVisible(false);
+        user_Street.setVisible(false);
+        user_City.setVisible(false);
+        user_State.setVisible(false);
+        user_Zip.setVisible(false);
+        user_Country.setVisible(false);
+        userName.setVisible(false);
+        cus_password.setVisible(false);
+        btn_CreateAcc.setVisible(false);
+        userName_notify.setVisible(false);
+        btn_AddNew.setVisible(false);
+        btnEdit.setVisible(false);
+    }
+}
